@@ -1,6 +1,6 @@
 import './App.css'
 
-import { detailData, detailOptions } from '/src/detail-chart.js'
+import ChartComponent from '/src/detail-chart'
 import { pieData, pieOptions } from '/src/score-chart.js'
 import { Line, Chart, Pie } from 'react-chartjs-2';
 import { Chart as ChartJS, CategoryScale, Filler, LinearScale, BarElement, PointElement, LineElement,ArcElement, Title, Tooltip, Legend, TimeScale } from 'chart.js';
@@ -41,9 +41,7 @@ function App() {
           </div>
       </div>
       <div id="bottom-row" className="body-top-block">
-        <div className="bar_chart">
-          <Chart data={detailData} options={detailOptions} />
-        </div>
+      <ChartComponent />
     </div>
       <div id="comment-row" className="body-top-block">
       </div>

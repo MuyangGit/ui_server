@@ -1,9 +1,8 @@
 #root {
-  width: 100%;
+  width: 100vw;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
-
 }
 
 .logo {
@@ -45,7 +44,7 @@
 .body-top-block {
     padding: 0 5%;
     width: 90%;
-    min-width: 1000px;
+    min-width: 100px;
     border-style: solid;
     border-width: 2px;
     border-color: #999;
@@ -53,13 +52,13 @@
 
 .bar_chart {
     width: 100%;
-    min-width: 1000px;
+    min-width: 100px;
     height:100%
 }
 
 #menu-row {
     height: 50px;
-    background-color: #ff634722;
+    background-color: #1a0a0722;
 }
 
 #head-row {
