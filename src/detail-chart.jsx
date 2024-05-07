@@ -95,18 +95,12 @@ function ChartComponent() {
 
     useEffect(() => {
 
-        // Function to format date in API required format YYYY-MM-DD-HH-MM-SS
-
         const start = formatDate(startDate);
         const end = formatDate(endDate);
 
-        const urlDetections = `http://70.175.151.113:5000/v1/ai-cat/chart-data/detections/${start}/${end}/${catId}`;
-        const urlCatStatus = `http://70.175.151.113:5000/v1/ai-cat/chart-data/cat-status/${start}/${end}/${catId}`;
-        const urlDetectedPeriods = `http://70.175.151.113:5000/v1/ai-cat/chart-data/detected-periods/${start}/${end}/${catId}`;
-
-        console.log(urlDetections)
-        console.log(urlCatStatus)
-        console.log(urlDetectedPeriods)
+        const urlDetections = `http://192.168.0.96:5000/v1/ai-cat/chart-data/detections/${start}/${end}/${catId}`;
+        const urlCatStatus = `http://192.168.0.96:5000/v1/ai-cat/chart-data/cat-status/${start}/${end}/${catId}`;
+        const urlDetectedPeriods = `http://192.168.0.96:5000/v1/ai-cat/chart-data/detected-periods/${start}/${end}/${catId}`;
 
         Promise.all([
             fetch(urlDetections).then(res => res.json()),
