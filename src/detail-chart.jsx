@@ -90,6 +90,14 @@ function formatDate(date) {
            `-${pad(date.getHours())}-${pad(date.getMinutes())}-${pad(date.getSeconds())}`;
 }
 
+function handleResponse(response) {
+    if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+    console.log(response)
+    return response.json();
+}
+
 function ChartComponent() {
     const [chartData, setChartData] = useState(null);
 
@@ -98,15 +106,20 @@ function ChartComponent() {
         const start = formatDate(startDate);
         const end = formatDate(endDate);
 
-        const urlDetections = `http://192.168.0.96:5000/v1/ai-cat/chart-data/detections/${start}/${end}/${catId}`;
-        const urlCatStatus = `http://192.168.0.96:5000/v1/ai-cat/chart-data/cat-status/${start}/${end}/${catId}`;
-        const urlDetectedPeriods = `http://192.168.0.96:5000/v1/ai-cat/chart-data/detected-periods/${start}/${end}/${catId}`;
-
+        const urlDetections = `http://70.175.151.113:10000/v1/ai-cat/chart-data/detections/${start}/${end}/${catId}`;
+        const urlCatStatus = `http://70.175.151.113:10000/v1/ai-cat/chart-data/cat-status/${start}/${end}/${catId}`;
+        const urlDetectedPeriods = `http://70.175.151.113:10000/v1/ai-cat/chart-data/detected-periods/${start}/${end}/${catId}`;
+	console.log(urlDetections)
+	console.log(urlCatStatus)
+	console.log(urlDetectedPeriods)	
         Promise.all([
-            fetch(urlDetections).then(res => res.json()),
-            fetch(urlCatStatus).then(res => res.json()),
-            fetch(urlDetectedPeriods).then(res => res.json()),
+            fetch(urlDetections).then(handleResponse),
+            fetch(urlCatStatus).then(handleResponse),
+            fetch(urlDetectedPeriods).then(handleResponse),
         ]).then(([detections, catStatus, detectedPeriods]) => {
+	    console.log(detections)
+	    console.log(catStatus)
+	    console.log(detectedPeriods)
             const data = createDetailData(detections, catStatus, detectedPeriods);
             setChartData(data);
         })
