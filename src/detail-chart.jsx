@@ -90,7 +90,6 @@ function formatDate(date) {
            `-${pad(date.getHours())}-${pad(date.getMinutes())}-${pad(date.getSeconds())}`;
 }
 
-
 function ChartComponent() {
     const [chartData, setChartData] = useState(null);
 
@@ -101,9 +100,9 @@ function ChartComponent() {
         const start = formatDate(startDate);
         const end = formatDate(endDate);
 
-        const urlDetections = `http://192.168.0.96:5000/v1/ai-cat/chart-data/detections/${start}/${end}/${catId}`;
-        const urlCatStatus = `http://192.168.0.96:5000/v1/ai-cat/chart-data/cat-status/${start}/${end}/${catId}`;
-        const urlDetectedPeriods = `http://192.168.0.96:5000/v1/ai-cat/chart-data/detected-periods/${start}/${end}/${catId}`;
+        const urlDetections = `http://70.175.151.113:5000/v1/ai-cat/chart-data/detections/${start}/${end}/${catId}`;
+        const urlCatStatus = `http://70.175.151.113:5000/v1/ai-cat/chart-data/cat-status/${start}/${end}/${catId}`;
+        const urlDetectedPeriods = `http://70.175.151.113:5000/v1/ai-cat/chart-data/detected-periods/${start}/${end}/${catId}`;
 
         console.log(urlDetections)
         console.log(urlCatStatus)
