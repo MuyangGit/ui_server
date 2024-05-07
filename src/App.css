@@ -1,0 +1,130 @@
+#root {
+  width: 100%;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+
+}
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}
+
+.body-top-block {
+    padding: 0 5%;
+    width: 90%;
+    min-width: 1000px;
+    border-style: solid;
+    border-width: 2px;
+    border-color: #999;
+}
+
+.bar_chart {
+    width: 100%;
+    min-width: 1000px;
+    height:100%
+}
+
+#menu-row {
+    height: 50px;
+    background-color: #ff634722;
+}
+
+#head-row {
+    height: 300px;
+    background-color: #63ff4722;
+    display: flex;
+}
+
+#body-row {
+    height: 600px;
+    background-color: #6347ff22;
+    display: flex;
+}
+
+#bottom-row {
+    height: 300px;
+    background-color: #63ffff22;
+}
+
+#profile {
+    width: 25%;
+    height: 100%;
+    background-color: #90aaff55;
+}
+
+#status {
+    width: 50%;
+    height: 100%;
+    background-color: #90ff2222;
+}
+
+#score {
+    width: 25%;
+    height: 100%;
+    background-color: #ff47ff22;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#time-line {
+    height: 100%;
+    width: 40%;
+    background-color: #aa99ff22;
+}
+
+#right-body {
+    height: 100%;
+    width: 60%;
+    background-color: #aa992222;
+}
+
+#live-position {
+    height: 60%;
+    width: 100%;
+    background-color: #3399ff22;
+}
+
+#activity-records {
+    height: 40%;
+    width: 100%;
+    background-color: #33ff9922;
+}
+
+#comment-row {
+    height: 800px;
+    background-color: #77aaff22;
+}
