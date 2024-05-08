@@ -57,24 +57,24 @@
 }
 
 #menu-row {
-    height: 50px;
+    height: 3em;
     background-color: #1a0a0722;
 }
 
 #head-row {
-    height: 300px;
+    height: 10em;
     background-color: #63ff4722;
     display: flex;
 }
 
 #body-row {
-    height: 600px;
+    height: 40em;
     background-color: #6347ff22;
     display: flex;
 }
 
 #bottom-row {
-    height: 300px;
+    height: 20em;
     background-color: #63ffff22;
 }
 

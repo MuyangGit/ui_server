@@ -2,7 +2,7 @@ import './App.css'
 
 import ChartComponent from '/src/detail-chart'
 import { pieData, pieOptions } from '/src/score-chart.js'
-import { Line, Chart, Pie } from 'react-chartjs-2';
+import { Line, Chart, Pie, Bar } from 'react-chartjs-2';
 import { Chart as ChartJS, CategoryScale, Filler, LinearScale, BarElement, PointElement, LineElement,ArcElement, Title, Tooltip, Legend, TimeScale } from 'chart.js';
 import 'chartjs-adapter-date-fns';
 
@@ -14,6 +14,7 @@ ChartJS.register(
   PointElement,
   LineElement,
   ArcElement,
+  BarElement,
   Title,
   Tooltip,
   Legend,
