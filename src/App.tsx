@@ -1,53 +1,13 @@
 import './App.css'
 
-import ChartComponent from '/src/detail-chart'
-import { pieData, pieOptions } from '/src/score-chart.js'
-import { Line, Chart, Pie, Bar } from 'react-chartjs-2';
-import { Chart as ChartJS, CategoryScale, Filler, LinearScale, BarElement, PointElement, LineElement,ArcElement, Title, Tooltip, Legend, TimeScale } from 'chart.js';
-import 'chartjs-adapter-date-fns';
+import Menu from "./menu/menu.tsx"
+import Body from "./body/body.tsx"
 
-// Register the necessary components
-ChartJS.register(
-//   CategoryScale,
-  LinearScale,
-//   BarElement,
-  PointElement,
-  LineElement,
-  ArcElement,
-  BarElement,
-  Title,
-  Tooltip,
-  Legend,
-  TimeScale,
-  Filler
-);
-
-function App() {
-  return (
-    <>
-      <div id="menu-row" className="body-top-block">
-      </div>
-      <div id="head-row" className="body-top-block">
-          <div id="profile"></div>
-          <div id="status"></div>
-          <div id="score">
-                <Pie data={pieData} options={pieOptions} />
-          </div>
-      </div>
-      <div id="body-row" className="body-top-block">
-          <div id="time-line"></div>
-          <div id="right-body">
-                <div id="live-position"></div>
-                <div id="activity-records"></div>
-          </div>
-      </div>
-      <div id="bottom-row" className="body-top-block">
-      <ChartComponent />
-    </div>
-      <div id="comment-row" className="body-top-block">
-      </div>
-    </>
-  )
-}
-
-export default App
+export default function App() {
+    return (
+        <>
+        <Menu />
+        <Body />
+        </>
+        )
+    }

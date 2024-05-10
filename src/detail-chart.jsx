@@ -167,7 +167,6 @@ const ChartComponent = ({ startDate, endDate, catId }) => {
 
     return (
         <div className="bar_chart">
-            <InputForm onFetch={fetchChartData} />
             {chartData && chartOptions && <Chart data={chartData} options={chartOptions} />}
         </div>
     );
