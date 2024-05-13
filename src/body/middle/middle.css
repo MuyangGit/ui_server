@@ -1,7 +1,6 @@
 #timeline {
     width: 35%;
     height: 100%;
-    background-color: rgb(2, 85, 58);
 }
 
 #middle-right{
@@ -18,7 +17,7 @@
 
 #live-status {
     width:100%;
-    background-color: rgb(1, 72, 72);
+    background-color: #5952;
     flex-grow: 1
 }
 
@@ -30,4 +29,14 @@
 
 #live-location-scatter {
     height: 100%;
+    overflow: hidden;
+}
+
+#time-line-chart-container {
+    height:100%;
+}
+
+#time-line-chart-container-scroll {
+    height:100%;
+    overflow-y: auto;
 }

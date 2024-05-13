@@ -1,12 +1,13 @@
 import "./middle.css"
 
 import LiveLocation from "./chart-live-location"
+import TimeLine from "./chart-timeline"
 
 export default function Middle() {
     return (
         <div id="middle-row" className="body-top-block">
             <div id="timeline">
-                timeline-chart
+                <TimeLine />
             </div>
             <div id="middle-right">
                 <div id="live-location">

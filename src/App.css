@@ -25,20 +25,19 @@
 }
 
 #middle-row {
-    height: 40em;
-    background-color: #4ef07422;
+    height: 55em;
     display: flex;
 }
 
 #bottom-row {
     height: 20em;
-    background-color: #63ffff22;
 }
 
 #comment-row {
-    height: 40em;
-    display: flex;
-    flex-direction: column
+    flex-direction: columnl;
+    background-color: #77aaff11;
+    margin-bottom: 3em;
+    padding-bottom:5em
 }
 
 #profile {
@@ -84,9 +83,4 @@
     height: 40%;
     width: 100%;
     background-color: #33ff9922;
-}
-
-#comment-row {
-    height: 800px;
-    background-color: #77aaff22;
 }
