@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 import { Line, Chart, Pie, Bar } from 'react-chartjs-2';
-import { Chart as ChartJS, CategoryScale, Filler, LinearScale, BarElement, PointElement, LineElement,ArcElement, Title, Tooltip, Legend, TimeScale } from 'chart.js';
+import { Chart as ChartJS, CategoryScale, Filler, LinearScale, BarElement, PointElement, LineElement,ArcElement, Title, Tooltip, Legend, TimeScale, plugins } from 'chart.js';
 import 'chartjs-adapter-date-fns';
 
 ChartJS.register(
@@ -50,18 +50,51 @@ const handleResponse = (response) => {
     return response.json();
 };
 
+const now = new Date();
+
 const createDetailOptions = (start, end) => ({
+    plugins: {
+        legend: {
+            display: false
+        },
+    },
     scales: {
+
         x: {
             type: "time",
             beginAtZero: false,
             min: start,
             max: end,
+            ticks: {
+                max: now,
+                maxTicksLimit: 6, // Control the maximum number of ticks
+            },
+            grid: {
+                display: false,
+                alignToPixels: true,
+                drawTicks: false
+            },
         },
         y: {
             beginAtZero: true,
             min: -0.2,
             max: 1.2,
+            grid:{
+                color: function(context) {
+                    if (context.tick.value === 0 || context.tick.value === 1) {
+                        return 'rgba(0, 0, 0, 0.1)';
+                    }
+                    return 'rgba(0, 0, 0, 0)';
+                }
+            },
+            ticks:{
+                color: function(context) {
+                    if (context.tick.value >=0 & context.tick.value <=1) {
+                        return 'rgba(0, 0, 0, 0.5)';
+                    }
+                    return 'rgba(0, 0, 0, 0)';
+                }
+            }
         },
     },
     maintainAspectRatio: false,

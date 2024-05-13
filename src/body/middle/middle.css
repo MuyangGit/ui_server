@@ -1,0 +1,33 @@
+#timeline {
+    width: 35%;
+    height: 100%;
+    background-color: rgb(2, 85, 58);
+}
+
+#middle-right{
+    width:65%;
+    display: flex;
+    flex-direction: column;
+}
+
+#live-location {
+    aspect-ratio: 1920 / 1080; /* 16:9 aspect ratio */
+    width: 100%;
+    position: relative;
+}
+
+#live-status {
+    width:100%;
+    background-color: rgb(1, 72, 72);
+    flex-grow: 1
+}
+
+#live-location-scatter-container {
+    position: absolute;
+    height: 100%; /* Ensure full height */
+    width: 100%; /* Ensure full width */
+}
+
+#live-location-scatter {
+    height: 100%;
+}

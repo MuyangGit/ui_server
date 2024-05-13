@@ -50,13 +50,16 @@
 
 #comment-record {
     width:90%;
-    height:50px;
     margin: 0 auto;
+    flex-direction: column;
 }
 
 .one-comment {
-    display:flex
+    display:flex;
+    width: 100%;
+    padding: 0.5em 0;
 }
+
 #commenter-profile-pic {
     width: 50px;
 }
@@ -64,7 +67,6 @@
 #commenter-content-area {
     flex: 1;
     display: inline-block;
-    height: 100px
 }
 
 #comment-title {

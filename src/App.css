@@ -11,30 +11,34 @@
     width: 100%;
     min-width: 100px;
     border-style: solid;
-    border-width: 2px;
+    border-width: 0px;
     border-color: #999;
 }
 
 #menu-row {
-    height: 3em;
-    background-color: #1a0a0722;
+    background-color: #9d9e9f22;
 }
 
 #head-row {
     height: 10em;
-    background-color: #63ff4722;
     display: flex;
 }
 
 #middle-row {
     height: 40em;
-    background-color: #6347ff22;
+    background-color: #4ef07422;
     display: flex;
 }
 
 #bottom-row {
     height: 20em;
     background-color: #63ffff22;
+}
+
+#comment-row {
+    height: 40em;
+    display: flex;
+    flex-direction: column
 }
 
 #profile {

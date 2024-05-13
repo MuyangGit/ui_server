@@ -1,0 +1,13 @@
+#logo {
+    width: 200px;
+    margin-right: auto;
+    height: 40px;
+}
+
+#menu-row {
+    display: flex;
+    vertical-align: middle;
+    border-bottom: 1px;
+    border-style: solid;
+    border-color: #cfcdcd;
+}
