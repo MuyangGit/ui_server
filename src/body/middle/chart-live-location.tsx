@@ -4,9 +4,9 @@ import { Chart as ChartJS, PointElement, LineElement, Tooltip, Legend, CategoryS
 
 
 const catColors = ["#4A8CC3", "#8FBC89", "#E37939"];
-
+const catColor_30 = ["#4A8CC322", "#8FBC8922", "#E3793922"]
 const backgroundImage = new Image();
-backgroundImage.src = '/src/assets/live-bg.jpg';
+backgroundImage.src = '/src/assets/2024-05-14-00-58-37-465828.jpg';
 
 const backgroundImagePlugin = {
   id: 'backgroundImagePlugin',
@@ -36,8 +36,8 @@ const customRectPlugin = {
         const xPixel = x.getPixelForValue(point.x);
         const yPixel = y.getPixelForValue(point.y);
         const xPixelWidth = Math.abs(x.getPixelForValue(point.x + point.width) - xPixel); // Width relative to x scale
-        const yPixelHeight = Math.abs(y.getPixelForValue(point.y + point.height) - yPixel); // Height relative to y scale
-        const borderRadius = point.borderRadius || 0;
+        const yPixelHeight = Math.abs(y.getPixelForValue(point.y + point.high) - yPixel); // Height relative to y scale
+        const borderRadius = 5;
 
         ctx.beginPath();
         // Top left corner
@@ -61,8 +61,6 @@ const customRectPlugin = {
 };
 
 
-
-
 const options= {
   responsive: true,
   maintainAspectRatio: false,
@@ -77,7 +75,8 @@ const options= {
     y: {
       min: 0,
       max: 1080,
-      display:false
+      display:false,
+      reverse: true
     }
   },
   plugins: {
@@ -93,12 +92,6 @@ const formatDateApi = (date) => {
          `-${pad(date.getHours())}-${pad(date.getMinutes())}-${pad(date.getSeconds())}`;
 };
 
-const handleResponse = (response) => {
-  if (!response.ok) {
-      throw new Error(`HTTP error! Status: ${response.status}`);
-  }
-  return response.json();
-};
 const LiveLocation = () => {
   const [chartData, setChartData] = useState(null);
 
@@ -110,7 +103,7 @@ const LiveLocation = () => {
     fetch(url)
       .then(response => response.json())
       .then(data => {
-        setChartData(data[1]);
+        setChartData(data);
       })
       .catch(err => {
         console.error('Error fetching data:', err);
@@ -129,35 +122,28 @@ const LiveLocation = () => {
     return <p>Loading...</p>;
   }
 
-  const data_0 = {
-    datasets: [
-      {
-          label: 'Custom Rectangles',
-          data: [
-              { x: 200, y: 500, width: 180, height: 250, borderRadius: 5 },
-              { x: 600, y: 130, width: 400, height: 200, borderRadius: 8 },
-              { x: 1030, y: 700, width: 400, height: 300, borderRadius: 8 },
-          ],
-          backgroundColor: "#4A8CC377",
-          borderColor: "#4A8CC3"
-        },
-      ],
-    };
-
-  console.log("dataset0:", data_0)
   const data = {
     datasets: [
-      {
-        label: 'Custom Rectangles',
-        data: chartData,
-        backgroundColor: "#4A8CC377",
-        borderColor: "#4A8CC3"
-        },
+          {
+          label: 'Custom Rectangles',
+          data: chartData[0],
+          backgroundColor: catColor_30[0],
+          borderColor: catColors[0]
+          },
+          {
+          label: 'Custom Rectangles',
+          data: chartData[1],
+          backgroundColor: catColor_30[1],
+          borderColor: catColors[1]
+          },
+          {
+          label: 'Custom Rectangles',
+          data: chartData[2],
+          backgroundColor: catColor_30[2],
+          borderColor: catColors[2]
+          },
       ],
     };
-
-    console.log("dataset1:", data)
-    // console.log("dataset1:", chartData)
 
   return (
     <div id="live-location-scatter-container">
