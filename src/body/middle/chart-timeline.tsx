@@ -33,7 +33,7 @@ const data = {
             type:'bar',
             barThickness:50,
             borderRadius:10,
-            borderColor: "#8888ffff",
+            borderColor: "#8888",
             borderWidth:1,
             borderSkipped: false,
         },

@@ -29,7 +29,7 @@ const customRectPlugin = {
 
     ctx.save(); // Save the initial state once
     chart.data.datasets.forEach(dataset => {
-      ctx.fillStyle = dataset.backgroundColor;
+      ctx.fillStyle = dataset.rectBackgroundColor;
       ctx.lineWidth = 1;
       ctx.strokeStyle = dataset.rectBorderColor || 'black';
 
@@ -108,12 +108,13 @@ const LiveLocation = () => {
   const fetchChartData = useCallback((start, end) => {
     const formattedStart = formatDateApi(start);
     const formattedEnd = formatDateApi(end);
-    const url = `http://70.175.151.113:10000/v1/ai-cat/chart-data/live-locations/${formattedStart}/${formattedEnd}`;
+    const url = `http://70.175.151.113:10000/v1/ai-cat/chart-data/live-locations/${formattedStart}/${formattedEnd}/30`;
     console.log(url)
 
     fetch(url)
       .then(response => response.json())
       .then(data => {
+          console.log(data)
         setChartData(data);
       })
       .catch(err => {
@@ -124,7 +125,7 @@ const LiveLocation = () => {
     useEffect(() => {
       const fetchData = () => {
         const endDate = new Date();
-        const startDate = new Date(endDate.getTime() - 10 * 60 * 1000); // 10 minutes before current time
+        const startDate = new Date(endDate.getTime() - 1 * 60 * 1000); // 10 minutes before current time
         fetchChartData(startDate, endDate);
       };
 
@@ -139,30 +140,34 @@ const LiveLocation = () => {
       {
       label: 'Custom Rectangles',
       data: chartData[0],
-      backgroundColor: catColor_30[0],
+      backgroundColor: "#0000",
+      rectBackgroundColor: catColor_30[0],
       rectBorderColor: catColors[0],
       borderColor: catColor_60[0],
       showLine:true,
-      borderDash: [10, 5]
+      borderDash: [10, 5],
+      pointRadius: chartData[0+100]
       },
       {
       label: 'Custom Rectangles',
       data: chartData[1],
-      backgroundColor: catColor_30[1],
+      backgroundColor: "#0000",
+      rectBackgroundColor: catColor_30[1],
       rectBorderColor: catColors[1],
       borderColor: catColor_60[1],
       showLine:true,
-      borderDash: [10, 5],
-
+      pointRadius: chartData[1+100]
       },
       {
       label: 'Custom Rectangles',
       data: chartData[2],
-      backgroundColor: catColor_30[2],
+      backgroundColor: "#0000",
+      rectBackgroundColor: catColor_30[2],
       rectBorderColor: catColors[2],
       borderColor: catColor_60[2],
       showLine:true,
       borderDash: [10, 5],
+      pointRadius: chartData[2+100]
       },
     ],
   };
