@@ -7,10 +7,6 @@ const catColors = ["#4A8CC3", "#8FBC89", "#E37939"];
 
 const backgroundImage = new Image();
 backgroundImage.src = '/src/assets/live-bg.jpg';
-backgroundImage.onload = () => {
-    // Create the chart once the image is loaded
-    createChart();
-};
 
 const backgroundImagePlugin = {
   id: 'backgroundImagePlugin',

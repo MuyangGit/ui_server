@@ -111,19 +111,12 @@ const createDetailData = (detections, catStatus, detectedPeriods, imageInfo, cat
         datasets: [
             {
                 type: "line",
+                label: 'Detected Period',
                 data: detectedPeriods["detected_period_fill_to"],
                 borderWidth: 0,
                 borderColor: catColor_30,
                 pointRadius: 0,
-            },
-            {
-                type: "line",
-                label: 'Detected Period',
-                data: detectedPeriods["detected_period_fill_from"],
-                borderWidth: 0,
-                fill: "-1",
-                pointRadius: 0,
-                backgroundColor: catColor_30
+                fill:'origin'
             },
             {
                 type: "line",
@@ -148,31 +141,22 @@ const createDetailData = (detections, catStatus, detectedPeriods, imageInfo, cat
             {
                 type: "bar",
                 label: 'RGB Frames',
-                data: [
-                    {x:'2024-05-13T14:40:00.0000', y:[-0.2, -0.06]},
-                    {x:'2024-05-13T14:41:00.0000', y:[-0.2, -0.03]},
-                    {x:'2024-05-13T14:42:00.0000', y:[-0.2, -0.13]},
-                    {x:'2024-05-13T14:43:00.0000', y:[-0.2, -0.13]}
-                    ],
+                data: imageInfo["rgb_result_json"],
                 barThickness:15,
                 borderRadius:10,
-                borderColor: "#6666",
+                backgroundColor: "#dd66",
+                borderColor: "#dd66",
                 borderWidth:0.5,
                 borderSkipped: 'end',
             },
             {
                 type: "bar",
                 label: 'Grey Frames',
-                data: [
-                    {x:'2024-05-13T14:44:00.0000', y:[-0.2, -0.06]},
-                    {x:'2024-05-13T14:45:00.0000', y:[-0.2, -0.03]},
-                    {x:'2024-05-13T14:46:00.0000', y:[-0.2, -0.13]},
-                    {x:'2024-05-13T14:47:00.0000', y:[-0.2, -0.13]}
-                    ],
+                data: imageInfo["grey_result_json"],
                 barThickness:15,
                 borderRadius:10,
-                backgroundColor: "#dd66",
-                borderColor: "#9966",
+                backgroundColor: "#6666",
+                borderColor: "#6666",
                 borderWidth:0.5,
                 borderSkipped: 'end',
             },

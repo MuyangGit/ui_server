@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
 
@@ -74,11 +74,17 @@ const options = {
 
 
 export default function Head() {
+    const catName = ["QB", "QBO", "YUKI"]
+    const [catId, setCatId] = useState(0);
+
+    const handelSelectCat = (catIdentifier) => {
+        setCatId(catIdentifier)
+    }
 
     return (
         <div id="head-row" className="body-top-block">
             <div id="profile-head-block">
-                <img id="profile-pic" src="/src/assets/c_0.jpg" className="img-thumbnail"/>
+                <img id="profile-pic" src={`/src/assets/c_${catId}.jpg`} className="img-thumbnail"/>
                 <div id="profile-name-group">
                     <button 
                         id="profile-name" 
@@ -89,11 +95,12 @@ export default function Head() {
                         aria-expanded="false"
                         style={{color:catColors[0]}}
                     >
-                    Qb
+                    {catName[catId]}
                     </button>
                     <div id="profile-name-dropdown" className="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                        <a className="dropdown-item" href="#">Qbo</a>
-                        <a className="dropdown-item" href="#">Yuki</a>
+                        <a className="dropdown-item" onClick={() => handelSelectCat(0)} href="#">QB</a>
+                        <a className="dropdown-item" onClick={() => handelSelectCat(1)} href="#">QBO</a>
+                        <a className="dropdown-item" onClick={() => handelSelectCat(2)} href="#">YUKI</a>
                     </div>
                 </div>
             </div>
