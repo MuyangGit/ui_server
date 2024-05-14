@@ -5,6 +5,7 @@ import { Chart as ChartJS, PointElement, LineElement, Tooltip, Legend, CategoryS
 
 const catColors = ["#4A8CC3", "#8FBC89", "#E37939"];
 const catColor_30 = ["#4A8CC322", "#8FBC8922", "#E3793922"]
+const catColor_60 = ["#4A8CC399", "#8FBC8999", "#E3793999"]
 const backgroundImage = new Image();
 backgroundImage.src = '/src/assets/2024-05-14-00-58-37-465828.jpg';
 
@@ -14,6 +15,7 @@ const backgroundImagePlugin = {
       if (backgroundImage.complete) {
           const { ctx, chartArea: { left, top, width, height } } = chart;
           ctx.save();
+          ctx.globalAlpha = 0.3;
           ctx.drawImage(backgroundImage, left, top, width, height);
           ctx.restore();
       }
@@ -26,17 +28,16 @@ const customRectPlugin = {
     const { ctx, scales: { x, y } } = chart;
 
     ctx.save(); // Save the initial state once
-
     chart.data.datasets.forEach(dataset => {
       ctx.fillStyle = dataset.backgroundColor;
       ctx.lineWidth = 1;
-      ctx.strokeStyle = dataset.borderColor || 'black';
+      ctx.strokeStyle = dataset.rectBorderColor || 'black';
 
       dataset.data.forEach(point => {
         const xPixel = x.getPixelForValue(point.x);
         const yPixel = y.getPixelForValue(point.y);
         const xPixelWidth = Math.abs(x.getPixelForValue(point.x + point.width) - xPixel); // Width relative to x scale
-        const yPixelHeight = Math.abs(y.getPixelForValue(point.y + point.high) - yPixel); // Height relative to y scale
+        const yPixelHeight = Math.abs(y.getPixelForValue(point.y + point.height) - yPixel); // Height relative to y scale
         const borderRadius = 5;
 
         ctx.beginPath();
@@ -60,7 +61,6 @@ const customRectPlugin = {
   }
 };
 
-
 const options= {
   responsive: true,
   maintainAspectRatio: false,
@@ -83,6 +83,16 @@ const options= {
     legend: {
         display: false,  // Set legend display to false
     },
+  },
+  animation: {
+      duration: 0
+  },
+  elements: {
+      line: {
+          borderDash: [10, 5],
+          borderWidth:1,
+          tension: 0.3 // Disables bezier curves
+      }
   }
 }
 
@@ -93,12 +103,13 @@ const formatDateApi = (date) => {
 };
 
 const LiveLocation = () => {
-  const [chartData, setChartData] = useState(null);
+  const [chartData, setChartData] = useState([]);
 
   const fetchChartData = useCallback((start, end) => {
     const formattedStart = formatDateApi(start);
     const formattedEnd = formatDateApi(end);
-    const url = `http://70.175.151.113:10000/v1/ai-cat/chart-data/live-locations/${formattedStart}/${formattedEnd}/10`;
+    const url = `http://70.175.151.113:10000/v1/ai-cat/chart-data/live-locations/${formattedStart}/${formattedEnd}`;
+    console.log(url)
 
     fetch(url)
       .then(response => response.json())
@@ -110,40 +121,51 @@ const LiveLocation = () => {
       });
   }, []);
 
-  console.log("====", chartData)
-  useEffect(() => {
-    const endDate = new Date();
-    const startDate = new Date(endDate.getTime() - 60 * 60 * 1000); // one hour before current time
+    useEffect(() => {
+      const fetchData = () => {
+        const endDate = new Date();
+        const startDate = new Date(endDate.getTime() - 10 * 60 * 1000); // 10 minutes before current time
+        fetchChartData(startDate, endDate);
+      };
 
-    fetchChartData(startDate, endDate);
-  }, [fetchChartData]);
+      fetchData();
+      const intervalId = setInterval(fetchData, 2000);
+      return () => clearInterval(intervalId);
+    }, [fetchChartData]);  // Dependency on fetchChartData, ensure it's stable
 
-  if (!chartData) {
-    return <p>Loading...</p>;
-  }
 
   const data = {
     datasets: [
-          {
-          label: 'Custom Rectangles',
-          data: chartData[0],
-          backgroundColor: catColor_30[0],
-          borderColor: catColors[0]
-          },
-          {
-          label: 'Custom Rectangles',
-          data: chartData[1],
-          backgroundColor: catColor_30[1],
-          borderColor: catColors[1]
-          },
-          {
-          label: 'Custom Rectangles',
-          data: chartData[2],
-          backgroundColor: catColor_30[2],
-          borderColor: catColors[2]
-          },
-      ],
-    };
+      {
+      label: 'Custom Rectangles',
+      data: chartData[0],
+      backgroundColor: catColor_30[0],
+      rectBorderColor: catColors[0],
+      borderColor: catColor_60[0],
+      showLine:true,
+      borderDash: [10, 5]
+      },
+      {
+      label: 'Custom Rectangles',
+      data: chartData[1],
+      backgroundColor: catColor_30[1],
+      rectBorderColor: catColors[1],
+      borderColor: catColor_60[1],
+      showLine:true,
+      borderDash: [10, 5],
+
+      },
+      {
+      label: 'Custom Rectangles',
+      data: chartData[2],
+      backgroundColor: catColor_30[2],
+      rectBorderColor: catColors[2],
+      borderColor: catColor_60[2],
+      showLine:true,
+      borderDash: [10, 5],
+      },
+    ],
+  };
 
   return (
     <div id="live-location-scatter-container">
@@ -158,4 +180,4 @@ const LiveLocation = () => {
 };
 
 export default LiveLocation;
-  
+

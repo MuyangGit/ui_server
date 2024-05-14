@@ -105,8 +105,6 @@ const createDetailData = (detections, catStatus, detectedPeriods, imageInfo, cat
     const catColor_60 = catColor + "99"
     const catColor_30 = catColor + "22"
 
-    console.log(imageInfo["image_frequency"])
-
     return {
         datasets: [
             {
@@ -164,14 +162,11 @@ const createDetailData = (detections, catStatus, detectedPeriods, imageInfo, cat
     }
 };
 
-
 const ChartComponent = ({ startDate, endDate, catId }) => {
-    console.log("Cart Component::", startDate, endDate, catId )
     const [chartData, setChartData] = useState(null);
     const [chartOptions, setChartOptions] = useState(null);
 
     const fetchChartData = (start, end, catIdentifier) => {
-        console.log(start, end, catIdentifier)
         const formattedAxisStart = formatDate(new Date(start));
         const formattedAxisEnd = formatDate(new Date(end));
         setChartOptions(createDetailOptions(formattedAxisStart, formattedAxisEnd));
