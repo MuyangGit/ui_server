@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Scatter } from 'react-chartjs-2';
 import { Chart as ChartJS, PointElement, LineElement, Tooltip, Legend, CategoryScale, LinearScale, Title } from 'chart.js';
 
@@ -61,20 +61,7 @@ const customRectPlugin = {
 };
 
 
-const data = {
-    datasets: [
-        {
-            label: 'Custom Rectangles',
-            data: [
-                { x: 200, y: 500, width: 180, height: 250, borderRadius: 5 },
-                { x: 600, y: 130, width: 400, height: 200, borderRadius: 8 },
-                { x: 1030, y: 700, width: 400, height: 300, borderRadius: 8 },
-            ],
-            backgroundColor: "#4A8CC377",
-            borderColor: "#4A8CC3"
-        },
-    ],
-};
+
 
 const options= {
   responsive: true,
@@ -100,13 +87,88 @@ const options= {
   }
 }
 
-  const LiveLocation = () => {
+const formatDateApi = (date) => {
+  const pad = (num) => (num < 10 ? '0' + num : num.toString());
+  return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}` +
+         `-${pad(date.getHours())}-${pad(date.getMinutes())}-${pad(date.getSeconds())}`;
+};
 
-    return (
-      <div id="live-location-scatter-container">
-        <Scatter id="live-location-scatter" data={data} options={options} plugins={[backgroundImagePlugin, customRectPlugin]} />
-      </div>
-    );
+const handleResponse = (response) => {
+  if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+  }
+  return response.json();
+};
+const LiveLocation = () => {
+  const [chartData, setChartData] = useState(null);
+
+  const fetchChartData = useCallback((start, end) => {
+    const formattedStart = formatDateApi(start);
+    const formattedEnd = formatDateApi(end);
+    const url = `http://70.175.151.113:10000/v1/ai-cat/chart-data/live-locations/${formattedStart}/${formattedEnd}/10`;
+
+    fetch(url)
+      .then(response => response.json())
+      .then(data => {
+        setChartData(data[1]);
+      })
+      .catch(err => {
+        console.error('Error fetching data:', err);
+      });
+  }, []);
+
+  console.log("====", chartData)
+  useEffect(() => {
+    const endDate = new Date();
+    const startDate = new Date(endDate.getTime() - 60 * 60 * 1000); // one hour before current time
+
+    fetchChartData(startDate, endDate);
+  }, [fetchChartData]);
+
+  if (!chartData) {
+    return <p>Loading...</p>;
+  }
+
+  const data_0 = {
+    datasets: [
+      {
+          label: 'Custom Rectangles',
+          data: [
+              { x: 200, y: 500, width: 180, height: 250, borderRadius: 5 },
+              { x: 600, y: 130, width: 400, height: 200, borderRadius: 8 },
+              { x: 1030, y: 700, width: 400, height: 300, borderRadius: 8 },
+          ],
+          backgroundColor: "#4A8CC377",
+          borderColor: "#4A8CC3"
+        },
+      ],
+    };
+
+  console.log("dataset0:", data_0)
+  const data = {
+    datasets: [
+      {
+        label: 'Custom Rectangles',
+        data: chartData,
+        backgroundColor: "#4A8CC377",
+        borderColor: "#4A8CC3"
+        },
+      ],
+    };
+
+    console.log("dataset1:", data)
+    // console.log("dataset1:", chartData)
+
+  return (
+    <div id="live-location-scatter-container">
+      <Scatter
+        id="live-location-scatter"
+        data={data}
+        options={options}
+        plugins={[backgroundImagePlugin, customRectPlugin]}
+      />
+    </div>
+  );
 };
 
 export default LiveLocation;
