@@ -66,3 +66,30 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+#login-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+#login-form {
+    width: 500px;
+    border-color: #ddd;
+    border-width: 1px;
+    border-style: solid;
+    padding: 50px;
+    border-radius: 10px; /* Adjust the radius for more or less rounding */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    justify-content: center;
+}
+
+.form-group {
+    margin-bottom:20px
+}
+
+#login-submit {
+    width:60%;
+    margin: 0 20%
+}
+
