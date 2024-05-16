@@ -5,9 +5,14 @@
 }
 
 #menu-row {
+    position:fixed;
+    left: 0;
+    top:0;
     display: flex;
     vertical-align: middle;
-    border-bottom: 1px;
-    border-style: solid;
-    border-color: #cfcdcd;
+    border-bottom: 1px solid #ccc;
+    z-index: 1000;
+    width:100%;
+    padding: 0 5%;
+    background-color: #9d9e9f22;
 }

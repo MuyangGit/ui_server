@@ -6,19 +6,6 @@
   max-width: 1200px;
 }
 
-.body-top-block {
-    padding: 0 5%;
-    width: 100%;
-    min-width: 100px;
-    border-style: solid;
-    border-width: 0px;
-    border-color: #999;
-}
-
-#menu-row {
-    background-color: #9d9e9f22;
-}
-
 #head-row {
     height: 10em;
     display: flex;
@@ -83,4 +70,9 @@
     height: 40%;
     width: 100%;
     background-color: #33ff9922;
+}
+
+#content {
+    margin-top:50px;
+    min-height:100%;
 }

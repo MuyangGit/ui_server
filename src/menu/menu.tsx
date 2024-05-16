@@ -1,25 +1,24 @@
 import "./menu.css"
+import 'bootstrap/dist/css/bootstrap.min.css';
 import React, { useState } from 'react';
 
-export default function Menu() {
-    const [mainPage, setMainPage] = useState('live');
-
-
+export default function Menu( {selectedMenu, setSelectedMenu} ) {
+    console.log("selectedMenu", selectedMenu)
     return (
-        <div id="menu-row" className="body-top-block">
+        <div id="menu-row">
             <button id='logo'>Cat Monitor</button>
             <ul className="nav justify-content-end nav-pills">
                 <li className="nav-item">
-                    <a className={`nav-link ${mainPage === 'live' ? 'active' : ''}`} onClick={() => setMainPage("live")} href="#">Live</a>
+                    <a className={`nav-link ${selectedMenu === 'live' ? 'active' : ''}`} onClick={() => setSelectedMenu("live")} >Live</a>
                 </li>
                 <li className="nav-item">
-                    <a className={`nav-link ${mainPage === 'report' ? 'active' : ''}`} onClick={() => setMainPage("report")} href="#">Report</a>
+                    <a className={`nav-link ${selectedMenu === 'report' ? 'active' : ''}`} onClick={() => setSelectedMenu("report")} >Report</a>
                 </li>
                 <li className="nav-item">
-                    <a className={`nav-link ${mainPage === 'analysis' ? 'active' : ''}`} onClick={() => setMainPage("analysis")} href="#">Analysis</a>
+                    <a className={`nav-link ${selectedMenu === 'analysis' ? 'active' : ''}`} onClick={() => setSelectedMenu("analysis")} >Analysis</a>
                 </li>
                 <li className="nav-item">
-                    <a className={`nav-link ${mainPage === 'acount' ? 'active' : ''}`} onClick={() => setMainPage("acount")} href="#">Acount</a>
+                    <a className={`nav-link ${selectedMenu === 'account' ? 'active' : ''}`} onClick={() => setSelectedMenu("account")} >Account</a>
                 </li>
             </ul>
         </div>

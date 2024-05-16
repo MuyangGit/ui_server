@@ -3,7 +3,7 @@ import Middle from "./middle/middle.tsx"
 import Bottom from "./bottom/bottom.tsx"
 import Comment from "./comment/comment.tsx"
 
-export default function Body() {
+export default function LiveBody() {
     return (
             <>
               <Head />
