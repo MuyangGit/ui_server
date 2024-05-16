@@ -1,8 +1,7 @@
-import React, { useState, useEffect, useContext, createContext } from 'react';
+import { useState } from 'react';
 import './bottom.css'
 import ChartComponent from './chart'
 import { CatSelection, DateInput, TimeFromInput, TimeToInput } from "./chart_meta"
-import DatePicker from 'react-datepicker';
 
 export default function Bottom() {
 
@@ -10,7 +9,7 @@ export default function Bottom() {
     const [startTime, setStartTime] = useState(new Date(endTime.getTime() - 60 * 60 * 1000));
     const [catId, setCatId] = useState(0);
 
-    function setDate (endTime) {
+    function setDate (endTime:any) {
         setEndTime(endTime);
         setStartTime(new Date(endTime.getTime() - 60 * 60 * 1000))
         }

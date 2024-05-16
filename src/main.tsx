@@ -13,7 +13,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
 function Main() {
   const [isLoggedIn, setLoggedIn] = useState(false);
 
-  const handleLogin = (status) => {
+  const handleLogin = (status:any) => {
     setLoggedIn(status);
   }
 

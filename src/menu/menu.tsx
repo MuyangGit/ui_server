@@ -1,8 +1,7 @@
 import "./menu.css"
 import 'bootstrap/dist/css/bootstrap.min.css';
-import React, { useState } from 'react';
 
-export default function Menu( {selectedMenu, setSelectedMenu} ) {
+export default function Menu( {selectedMenu, setSelectedMenu}:any ) {
     console.log("selectedMenu", selectedMenu)
     return (
         <div id="menu-row">

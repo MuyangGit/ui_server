@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
 
-import { color } from "chart.js/helpers";
 import "./head.css"
   
 import { Pie } from 'react-chartjs-2';
@@ -15,7 +14,7 @@ const catColors = ["#4A8CC3", "#8FBC89", "#E37939"];
 
 const centerTextPlugin = {
     id: 'centerText',
-    afterDatasetsDraw: function(chart) {
+    afterDatasetsDraw: function(chart:any) {
         const { ctx } = chart;
         const { width, height } = chart;
         ctx.save();
@@ -77,7 +76,7 @@ export default function Head() {
     const catName = ["QB", "QBO", "YUKI"]
     const [catId, setCatId] = useState(0);
 
-    const handelSelectCat = (catIdentifier) => {
+    const handelSelectCat = (catIdentifier:any) => {
         setCatId(catIdentifier)
     }
 

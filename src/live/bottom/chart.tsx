@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
-import { Line, Chart, Pie, Bar } from 'react-chartjs-2';
-import { Chart as ChartJS, CategoryScale, Filler, LinearScale, BarElement, PointElement, LineElement,ArcElement, Title, Tooltip, Legend, TimeScale, plugins } from 'chart.js';
+import { Chart } from 'react-chartjs-2';
+import { Chart as ChartJS, CategoryScale, Filler, LinearScale, BarElement, PointElement, LineElement,ArcElement, Title, Tooltip, Legend, TimeScale } from 'chart.js';
 import 'chartjs-adapter-date-fns';
 
 ChartJS.register(
@@ -22,28 +22,19 @@ ChartJS.register(
 
 const catColors = ["#4A8CC3", "#8FBC89", "#E37939"];
 
-const formatDate = (date) => {
-    const pad = (num) => (num < 10 ? '0' + num : num.toString());
+const formatDate = (date:any) => {
+    const pad = (num:any) => (num < 10 ? '0' + num : num.toString());
     return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}` +
            `T${pad(date.getHours())}:${pad(date.getMinutes())}:${pad(date.getSeconds())}`;
 };
 
-const formatDateApi = (date) => {
-    const pad = (num) => (num < 10 ? '0' + num : num.toString());
+const formatDateApi = (date:any) => {
+    const pad = (num:any) => (num < 10 ? '0' + num : num.toString());
     return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}` +
            `-${pad(date.getHours())}-${pad(date.getMinutes())}-${pad(date.getSeconds())}`;
 };
 
-const getFormattedDateRange = () => {
-    const endDate = new Date();
-    const startDate = new Date(endDate.getTime() - 60 * 60 * 1000); // one hour before current time
-    return {
-        start: formatDate(startDate),
-        end: formatDate(endDate)
-    };
-};
-
-const handleResponse = (response) => {
+const handleResponse = (response:any) => {
     if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);
     }
@@ -52,7 +43,7 @@ const handleResponse = (response) => {
 
 const now = new Date();
 
-const createDetailOptions = (start, end) => ({
+const createDetailOptions = (start:string, end:string) => ({
     plugins: {
         legend: {
             display: false
@@ -80,7 +71,7 @@ const createDetailOptions = (start, end) => ({
             min: -0.2,
             max: 1.2,
             grid:{
-                color: function(context) {
+                color: function(context:any) {
                     if (context.tick.value === 0 || context.tick.value === 1) {
                         return 'rgba(0, 0, 0, 0.1)';
                     }
@@ -88,8 +79,8 @@ const createDetailOptions = (start, end) => ({
                 }
             },
             ticks:{
-                color: function(context) {
-                    if (context.tick.value >=0 & context.tick.value <=1) {
+                color: function(context:any) {
+                    if (context.tick.value >=0 && context.tick.value <=1) {
                         return 'rgba(0, 0, 0, 0.5)';
                     }
                     return 'rgba(0, 0, 0, 0)';
@@ -100,7 +91,7 @@ const createDetailOptions = (start, end) => ({
     maintainAspectRatio: false,
 });
 
-const createDetailData = (detections, catStatus, detectedPeriods, imageInfo, catColor) => {
+const createDetailData = (detections:any, catStatus:any, detectedPeriods:any, imageInfo:any, catColor:any) => {
 
     const catColor_60 = catColor + "99"
     const catColor_30 = catColor + "22"
@@ -162,11 +153,11 @@ const createDetailData = (detections, catStatus, detectedPeriods, imageInfo, cat
     }
 };
 
-const ChartComponent = ({ startDate, endDate, catId }) => {
+const ChartComponent = ({ startDate, endDate, catId }:any) => {
     const [chartData, setChartData] = useState(null);
     const [chartOptions, setChartOptions] = useState(null);
 
-    const fetchChartData = (start, end, catIdentifier) => {
+    const fetchChartData = (start:string, end:string, catIdentifier:any) => {
         const formattedAxisStart = formatDate(new Date(start));
         const formattedAxisEnd = formatDate(new Date(end));
         setChartOptions(createDetailOptions(formattedAxisStart, formattedAxisEnd));

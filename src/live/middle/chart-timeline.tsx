@@ -1,9 +1,5 @@
-import React from 'react';
 import { Bar } from 'react-chartjs-2';
-import { Chart as ChartJS, PointElement, LineElement, Tooltip, Legend, CategoryScale, LinearScale, Title } from 'chart.js';
 
-
-const catColors = ["#4A8CC3", "#8FBC89", "#E37939"];
 
 const bar_location = 2
 const data = {
@@ -29,7 +25,6 @@ const data = {
                 { x: bar_location, y: ["2024-05-13T06:00:00", "2024-05-13T08:00:00"]}
             ],
             backgroundColor: "#8888ff99",
-            borderColor: "#4A8CC3",
             type:'bar',
             barThickness:50,
             borderRadius:10,

@@ -1,13 +1,13 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
-import React, { useState } from 'react';
+import { useState } from 'react';
 
-export default function Login({ onLogin }) {
+export default function Login({ onLogin }:any) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleLogin = async (event) => { // Mark this function as async
+  const handleLogin = async (event:any) => { // Mark this function as async
     event.preventDefault(); // Prevent default form submission behavior
 
     let isLoginSuccessful = false; // Initialize outside try-catch to be accessible later

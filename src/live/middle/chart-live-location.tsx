@@ -1,6 +1,5 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { Scatter } from 'react-chartjs-2';
-import { Chart as ChartJS, PointElement, LineElement, Tooltip, Legend, CategoryScale, LinearScale, Title } from 'chart.js';
 
 
 const catColors = ["#4A8CC3", "#8FBC89", "#E37939"];
@@ -11,7 +10,7 @@ backgroundImage.src = '/src/assets/2024-05-14-00-58-37-465828.jpg';
 
 const backgroundImagePlugin = {
   id: 'backgroundImagePlugin',
-  beforeDraw: (chart) => {
+  beforeDraw: (chart: any) => {
       if (backgroundImage.complete) {
           const { ctx, chartArea: { left, top, width, height } } = chart;
           ctx.save();
@@ -24,16 +23,16 @@ const backgroundImagePlugin = {
 
 const customRectPlugin = {
   id: 'customRectPlugin',
-  afterDraw(chart) {
+  afterDraw(chart: any) {
     const { ctx, scales: { x, y } } = chart;
 
     ctx.save(); // Save the initial state once
-    chart.data.datasets.forEach(dataset => {
+    chart.data.datasets.forEach((dataset: { rectBackgroundColor: any; rectBorderColor: string; data: any[]; }) => {
       ctx.fillStyle = dataset.rectBackgroundColor;
       ctx.lineWidth = 1;
       ctx.strokeStyle = dataset.rectBorderColor || 'black';
 
-      dataset.data.forEach(point => {
+      dataset.data.forEach((point: { x: any; y: any; width: any; height: any; }) => {
         const xPixel = x.getPixelForValue(point.x);
         const yPixel = y.getPixelForValue(point.y);
         const xPixelWidth = Math.abs(x.getPixelForValue(point.x + point.width) - xPixel); // Width relative to x scale
@@ -96,8 +95,8 @@ const options= {
   }
 }
 
-const formatDateApi = (date) => {
-  const pad = (num) => (num < 10 ? '0' + num : num.toString());
+const formatDateApi = (date: { getFullYear: () => any; getMonth: () => number; getDate: () => any; getHours: () => any; getMinutes: () => any; getSeconds: () => any; }) => {
+  const pad = (num: number) => (num < 10 ? '0' + num.toString() : num.toString());
   return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}` +
          `-${pad(date.getHours())}-${pad(date.getMinutes())}-${pad(date.getSeconds())}`;
 };
@@ -105,7 +104,7 @@ const formatDateApi = (date) => {
 const LiveLocation = () => {
   const [chartData, setChartData] = useState([]);
 
-  const fetchChartData = useCallback((start, end) => {
+  const fetchChartData = useCallback((start: any, end: any) => {
     const formattedStart = formatDateApi(start);
     const formattedEnd = formatDateApi(end);
     const url = `http://70.175.151.113:10000/v1/ai-cat/chart-data/live-locations/${formattedStart}/${formattedEnd}/30`;

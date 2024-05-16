@@ -1,6 +1,5 @@
-import React from 'react';
 
-const OneComment = ({ record }) => {
+const OneComment = ({ record }:any) => {
     return (
         <div className="one-comment">
             <div id="commenter-profile-pic">

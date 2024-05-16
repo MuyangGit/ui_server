@@ -1,14 +1,13 @@
-import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 
 
-export const DateInput = ({date, onDateChange}) => {
+export const DateInput = ({date, onDateChange}:any) => {
     return (
         <DatePicker
             id="chart-date"
-            onChange={date => onDateChange(date)}
+            onChange={(date: any) => onDateChange(date)}
             selected={date}
             dateFormat="yyyy-MM-dd"
             className="form-control"
@@ -17,12 +16,12 @@ export const DateInput = ({date, onDateChange}) => {
         )
     }
 
-export const TimeFromInput = ({startTime, onStartTimeChange}) => {
+export const TimeFromInput = ({startTime, onStartTimeChange}:any) => {
     return (
             <DatePicker
                 id="chart-start-time"
                 selected={startTime}
-                onChange={date => onStartTimeChange(date)}
+                onChange={(date: any) => onStartTimeChange(date)}
                 showTimeSelect
                 showTimeSelectOnly
                 timeIntervals={15}
@@ -34,13 +33,13 @@ export const TimeFromInput = ({startTime, onStartTimeChange}) => {
         )
     }
 
-export const TimeToInput = ({endTime, onEndTimeChange}) => {
+export const TimeToInput = ({endTime, onEndTimeChange}:any) => {
 
     return (
             <DatePicker
                 id="chart-end-time"
                 selected={endTime}
-                onChange={date => onEndTimeChange(date)}
+                onChange={(date: any) => onEndTimeChange(date)}
                 showTimeSelect
                 showTimeSelectOnly
                 timeIntervals={15}
@@ -52,7 +51,7 @@ export const TimeToInput = ({endTime, onEndTimeChange}) => {
         )
     }
 
-export const CatSelection = ({catId, onCatIDChange}) => {
+export const CatSelection = ({catId, onCatIDChange}:any) => {
     console.log(catId, catId===0)
     return (
         <div className="btn-group btn-group-toggle" data-toggle="buttons">

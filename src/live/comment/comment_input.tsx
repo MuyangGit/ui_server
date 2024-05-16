@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import { SetStateAction, useState } from 'react';
 
 export default function CommentInput() {
     const [atDeveloper, setAtDeveloper] = useState(0);
     const [sharePublic, setSharePublic] = useState(0);
     const [commentText, setCommentText] = useState("");
 
-    const toggleState = (currentState, setState) => {
+    const toggleState = (currentState: number, setState: { (value: SetStateAction<number>): void; (value: SetStateAction<number>): void; (arg0: number): void; }) => {
         setState(currentState === 0 ? 1 : 0);
         console.log(atDeveloper, sharePublic)
     };
@@ -34,7 +34,7 @@ export default function CommentInput() {
         setCommentText("")
     }
 
-    const handleTextareaChange = (event) => {
+    const handleTextareaChange = (event: { target: { value: SetStateAction<string>; }; }) => {
         setCommentText(event.target.value);
     }
 

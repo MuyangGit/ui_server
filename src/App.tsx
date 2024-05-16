@@ -1,6 +1,6 @@
 import './App.css'
 
-import React, { useState } from 'react';
+import { useState } from 'react';
 import Menu from "./menu/menu.tsx"
 import LiveBody from "./live/body.tsx"
 import AnalysisBody from "./analysis/analysis_body"
