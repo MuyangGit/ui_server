@@ -12,7 +12,7 @@ const catColors = ["#4A8CC3", "#8FBC89", "#E37939"];
 const catColor_30 = ["#4A8CC322", "#8FBC8922", "#E3793922"]
 const catColor_60 = ["#4A8CC399", "#8FBC8999", "#E3793999"]
 const backgroundImage = new Image();
-backgroundImage.src = '/assets/2024-05-14-00-58-37-465828.jpg';
+backgroundImage.src = '/assets/2024-05-14-19-42-34-671553.jpg'
 
 const backgroundImagePlugin = {
   id: 'backgroundImagePlugin',
