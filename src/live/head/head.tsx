@@ -27,7 +27,7 @@ const centerTextPlugin = {
     }
 };
 
-const data = {
+const data:any = {
   type: 'pie',
   labels: [],
   datasets: [
@@ -83,7 +83,7 @@ export default function Head() {
     return (
         <div id="head-row" className="body-top-block">
             <div id="profile-head-block">
-                <img id="profile-pic" src={`/src/assets/c_${catId}.jpg`} className="img-thumbnail"/>
+                <img id="profile-pic" src={`/assets/c_${catId}.jpg`} className="img-thumbnail"/>
                 <div id="profile-name-group">
                     <button 
                         id="profile-name" 

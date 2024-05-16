@@ -7,6 +7,7 @@ import AnalysisBody from "./analysis/analysis_body"
 import ReportBody from "./report/report_body"
 import AccountBody from "./account/account_body"
 
+
 export default function App() {
     const [selectedMenu, setSelectedMenu] = useState('live');
 

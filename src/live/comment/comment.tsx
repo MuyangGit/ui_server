@@ -10,7 +10,7 @@ export default function Comment() {
             <div id="comment-record">
                 <div className="one-comment">
                     <div id="commenter-profile-pic">
-                        <img src="/src/assets/u_0.jpg" className="img-thumbnail" />
+                        <img src="/assets/u_0.jpg" className="img-thumbnail" />
                     </div>
                     <div id="commenter-content-area">
                         <div id="comment-title">

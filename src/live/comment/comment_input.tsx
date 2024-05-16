@@ -38,10 +38,12 @@ export default function CommentInput() {
         setCommentText(event.target.value);
     }
 
+    const inputHeight:any = "3"
+    
     return (
         <div id="comment-input">
             <label id="comment-input-label">Leave a Comment:</label>
-            <textarea id="comment-input-area" className="form-control" rows="3" onChange={handleTextareaChange} value={commentText}></textarea>
+            <textarea id="comment-input-area" className="form-control" rows={inputHeight} onChange={handleTextareaChange} value={commentText}></textarea>
             <div className="flex-row">
                 <button
                     id="at-developer"

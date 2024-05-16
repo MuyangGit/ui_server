@@ -22,7 +22,7 @@ export default function CommentHistory() {
     const commentRecord = {
         name: "Muyang Lu",
         time: "2024 May 11, 00:52",
-        profileUrl: "/src/assets/u_0.jpg",
+        profileUrl: "/assets/u_0.jpg",
         content: "This is my second react example comment. This is my second react example comment. This is my second react example comment. This is my second react example comment. This is my second react example comment. This is my second react example comment."
     };
 

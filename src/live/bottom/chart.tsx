@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 
 import { Chart } from 'react-chartjs-2';
-import { Chart as ChartJS, CategoryScale, Filler, LinearScale, BarElement, PointElement, LineElement,ArcElement, Title, Tooltip, Legend, TimeScale } from 'chart.js';
+import { Chart as ChartJS, CategoryScale, Filler, LinearScale, BarElement, PointElement, LineElement,ArcElement, Title, Tooltip, Legend, TimeScale, LineController, BarController } from 'chart.js';
 import 'chartjs-adapter-date-fns';
 
 ChartJS.register(
@@ -11,6 +11,8 @@ ChartJS.register(
   PointElement,
   LineElement,
   ArcElement,
+  BarController,
+  LineController,
   BarElement,
   Title,
   Tooltip,
@@ -160,7 +162,8 @@ const ChartComponent = ({ startDate, endDate, catId }:any) => {
     const fetchChartData = (start:string, end:string, catIdentifier:any) => {
         const formattedAxisStart = formatDate(new Date(start));
         const formattedAxisEnd = formatDate(new Date(end));
-        setChartOptions(createDetailOptions(formattedAxisStart, formattedAxisEnd));
+        const detailOptionAny:any = createDetailOptions(formattedAxisStart, formattedAxisEnd)
+        setChartOptions(detailOptionAny);
 
         const formattedStart = formatDateApi(new Date(start));
         const formattedEnd = formatDateApi(new Date(end));
@@ -174,7 +177,7 @@ const ChartComponent = ({ startDate, endDate, catId }:any) => {
         console.log(urls)
         Promise.all(urls.map(url => fetch(url).then(handleResponse)))
             .then(([detections, catStatus, detectedPeriods, imageInfo]) => {
-                const data = createDetailData(detections, catStatus, detectedPeriods, imageInfo, catColors[catId]);
+                const data:any = createDetailData(detections, catStatus, detectedPeriods, imageInfo, catColors[catId]);
                 setChartData(data);
             })
             .catch(error => {
@@ -188,7 +191,7 @@ const ChartComponent = ({ startDate, endDate, catId }:any) => {
 
     return (
         <div className="bar_chart">
-            {chartData && chartOptions && <Chart data={chartData} options={chartOptions} />}
+            {chartData && chartOptions && <Chart data={chartData} options={chartOptions} type='line'/>}
         </div>
     );
 };

@@ -2,7 +2,7 @@ import { Bar } from 'react-chartjs-2';
 
 
 const bar_location = 2
-const data = {
+const data:any = {
     datasets: [
         {
             label: 'Undetected',
@@ -74,7 +74,7 @@ const data = {
     ],
 };
 
-const options= {
+const options:any = {
   responsive: true,
   maintainAspectRatio: false,
   scales: {

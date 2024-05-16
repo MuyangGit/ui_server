@@ -1,12 +1,18 @@
 import { useState, useEffect, useCallback } from 'react';
 import { Scatter } from 'react-chartjs-2';
 
+import { Chart as ChartJS, LineController } from 'chart.js';
+import 'chartjs-adapter-date-fns';
+
+ChartJS.register(
+  LineController
+);
 
 const catColors = ["#4A8CC3", "#8FBC89", "#E37939"];
 const catColor_30 = ["#4A8CC322", "#8FBC8922", "#E3793922"]
 const catColor_60 = ["#4A8CC399", "#8FBC8999", "#E3793999"]
 const backgroundImage = new Image();
-backgroundImage.src = '/src/assets/2024-05-14-00-58-37-465828.jpg';
+backgroundImage.src = '/assets/2024-05-14-00-58-37-465828.jpg';
 
 const backgroundImagePlugin = {
   id: 'backgroundImagePlugin',
@@ -60,7 +66,7 @@ const customRectPlugin = {
   }
 };
 
-const options= {
+const options:any = {
   responsive: true,
   maintainAspectRatio: false,
   scales: {
@@ -129,7 +135,7 @@ const LiveLocation = () => {
       };
 
       fetchData();
-      const intervalId = setInterval(fetchData, 2000);
+      const intervalId = setInterval(fetchData, 20000);
       return () => clearInterval(intervalId);
     }, [fetchChartData]);  // Dependency on fetchChartData, ensure it's stable
 
