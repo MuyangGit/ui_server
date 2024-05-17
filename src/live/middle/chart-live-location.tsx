@@ -88,11 +88,11 @@ const LiveLocation = () => {
   const [chartData, setChartData] = useState([]);
   const [bgImage, setBGImage] = useState("2024-05-17-00-06-13-255868.jpg");
 
-  const backgroundImage = new Image();
-  backgroundImage.src = `/assets/${bgImage}`;
-
-  const backgroundImagePlugin = (backgroundImage) => {
+  const backgroundImagePlugin = {
+    const backgroundImage = new Image();
+    backgroundImage.src = `/assets/${bgImage}`;
     id: 'backgroundImagePlugin',
+    console.log(bgImage)
     beforeDraw: (chart) => {
       if (backgroundImage.complete) {
         const { ctx, chartArea: { left, top, width, height } } = chart;
@@ -199,7 +199,7 @@ const LiveLocation = () => {
         id="live-location-scatter"
         data={data}
         options={options}
-        plugins={[backgroundImagePlugin(backgroundImage), customRectPlugin]}
+        plugins={[backgroundImagePlugin, customRectPlugin]}
       />
     </div>
   );
