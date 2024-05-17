@@ -86,7 +86,7 @@ const formatDateApi = (date) => {
 
 const LiveLocation = () => {
   const [chartData, setChartData] = useState([]);
-  const [bgImage, setBGImage] = useState("2024-05-17-00-06-13-255868.jpg");
+  const [bgImage, setBGImage] = useState("2024-05-17-16-23-11-040249.jpg");
 
   const backgroundImage = new Image();
   backgroundImage.src = `/assets/${bgImage}`;
