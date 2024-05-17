@@ -121,18 +121,6 @@ const LiveLocation = () => {
       });
   }, []);
 
-  useEffect(() => {
-    const fetchData = () => {
-      const endDate = new Date();
-      const startDate = new Date(endDate.getTime() - 1 * 60 * 1000);
-      fetchChartData(startDate, endDate);
-    };
-
-    fetchData();
-    const intervalId = setInterval(fetchData, 20000);
-    return () => clearInterval(intervalId);
-  }, [fetchChartData]);
-
   const updateBackground = () => {
     const url = `http://70.175.151.113:10000/v1/ai-cat/chart-data/update-background`;
     console.log(url);
@@ -152,6 +140,19 @@ const LiveLocation = () => {
         console.error('Error fetching data:', err);
       });
   };
+
+  useEffect(() => {
+    const fetchData = () => {
+      const endDate = new Date();
+      const startDate = new Date(endDate.getTime() - 1 * 60 * 1000);
+      fetchChartData(startDate, endDate);
+      updateBackground()
+    };
+
+    fetchData();
+    const intervalId = setInterval(fetchData, 20000);
+    return () => clearInterval(intervalId);
+  }, [fetchChartData]);
 
   const data = {
     datasets: [
