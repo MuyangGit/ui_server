@@ -11,21 +11,6 @@ ChartJS.register(
 const catColors = ["#4A8CC3", "#8FBC89", "#E37939"];
 const catColor_30 = ["#4A8CC322", "#8FBC8922", "#E3793922"]
 const catColor_60 = ["#4A8CC399", "#8FBC8999", "#E3793999"]
-const backgroundImage = new Image();
-backgroundImage.src = '/assets/2024-05-17-00-06-13-255868.jpg'
-
-const backgroundImagePlugin = {
-  id: 'backgroundImagePlugin',
-  beforeDraw: (chart: any) => {
-      if (backgroundImage.complete) {
-          const { ctx, chartArea: { left, top, width, height } } = chart;
-          ctx.save();
-          ctx.globalAlpha = 0.3;
-          ctx.drawImage(backgroundImage, left, top, width, height);
-          ctx.restore();
-      }
-  }
-};
 
 const customRectPlugin = {
   id: 'customRectPlugin',
@@ -109,6 +94,23 @@ const formatDateApi = (date: { getFullYear: () => any; getMonth: () => number; g
 
 const LiveLocation = () => {
   const [chartData, setChartData] = useState([]);
+  const [bgImage, setBGImage] = useState("2024-05-17-00-06-13-255868.jpg")
+
+    const backgroundImage = new Image();
+    backgroundImage.src = `/assets/${bgImage}`
+
+    const backgroundImagePlugin = {
+      id: 'backgroundImagePlugin',
+      beforeDraw: (chart: any) => {
+          if (backgroundImage.complete) {
+              const { ctx, chartArea: { left, top, width, height } } = chart;
+              ctx.save();
+              ctx.globalAlpha = 0.3;
+              ctx.drawImage(backgroundImage, left, top, width, height);
+              ctx.restore();
+          }
+      }
+    };
 
   const fetchChartData = useCallback((start: any, end: any) => {
     const formattedStart = formatDateApi(start);
@@ -177,8 +179,29 @@ const LiveLocation = () => {
     ],
   };
 
+    const updateBackground = () => {
+      const url = `http://70.175.151.113:10000/v1/ai-cat/chart-data/update-background`;
+      console.log(url);
+
+      fetch(url)
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          return response.json();
+        })
+        .then(data => {
+          console.log(data);
+          setBGImage(data["image_name"]); // Ensure data contains the correct property
+        })
+        .catch(err => {
+          console.error('Error fetching data:', err);
+        });
+    };
+
   return (
     <div id="live-location-scatter-container">
+    <button id="update-background" className="btn" onClick={updateBackground}>Update Background</button>
       <Scatter
         id="live-location-scatter"
         data={data}
