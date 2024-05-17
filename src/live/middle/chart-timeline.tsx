@@ -1,7 +1,26 @@
 import { Bar } from 'react-chartjs-2';
 
 
+const formatDate = (date:any) => {
+    const pad = (num:any) => (num < 10 ? '0' + num : num.toString());
+    return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}` +
+           `T${pad(date.getHours())}:${pad(date.getMinutes())}:${pad(date.getSeconds())}`;
+};
+
+const formatToday = (date:any) => {
+    const pad = (num:any) => (num < 10 ? '0' + num : num.toString());
+    return [`${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}` + `T00:00:00`, 
+            `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate()+1)}` + `T00:00:00`]
+};
+
+
 const bar_location = 2
+const startNow = new Date();
+const endNow = new Date(startNow.getTime() + 2 * 60 * 1000);
+
+const today = formatToday(startNow)
+
+const nowTime = [formatDate(startNow), formatDate(endNow)]
 const data:any = {
     datasets: [
         {
@@ -71,6 +90,17 @@ const data:any = {
             borderWidth:1,
             borderSkipped: false,
         },
+        {
+            label: 'Now',
+            data: [
+                { x: bar_location, y: nowTime}
+            ],
+            backgroundColor: "#d00",
+            type:'bar',
+            barThickness:50,
+            borderColor: "#d00",
+            borderWidth:1,
+        },
     ],
 };
 
@@ -90,8 +120,8 @@ const options:any = {
         type: "time",
         position: "center",
         reverse: true,
-        min: "2024-05-13T00:00:00",
-        max: "2024-05-14T00:00:00",
+        min: today[0],
+        max: today[1],
         ticks: {
             stepSize: 120,
         },
