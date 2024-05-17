@@ -88,21 +88,22 @@ const LiveLocation = () => {
   const [chartData, setChartData] = useState([]);
   const [bgImage, setBGImage] = useState("2024-05-17-00-06-13-255868.jpg");
 
+  const backgroundImage = new Image();
+  backgroundImage.src = `/assets/${bgImage}`;
+
   const backgroundImagePlugin = {
-    const backgroundImage = new Image();
-    backgroundImage.src = `/assets/${bgImage}`;
     id: 'backgroundImagePlugin',
-    console.log(bgImage)
     beforeDraw: (chart) => {
       if (backgroundImage.complete) {
+          console.log(bgImage)
         const { ctx, chartArea: { left, top, width, height } } = chart;
-        ctx.save()
-        ctx.globalAlpha = 0.3
-        ctx.drawImage(backgroundImage, left, top, width, height)
-        ctx.restore()
+        ctx.save();
+        ctx.globalAlpha = 0.3;
+        ctx.drawImage(backgroundImage, left, top, width, height);
+        ctx.restore();
       }
     }
-  }
+  };
 
   const fetchChartData = useCallback((start, end) => {
     const formattedStart = formatDateApi(start);
