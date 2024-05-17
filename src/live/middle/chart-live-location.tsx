@@ -91,18 +91,18 @@ const LiveLocation = () => {
   const backgroundImage = new Image();
   backgroundImage.src = `/assets/${bgImage}`;
 
-  const backgroundImagePlugin = {
+  const backgroundImagePlugin = (backgroundImage) => {
     id: 'backgroundImagePlugin',
     beforeDraw: (chart) => {
       if (backgroundImage.complete) {
         const { ctx, chartArea: { left, top, width, height } } = chart;
-        ctx.save();
-        ctx.globalAlpha = 0.3;
-        ctx.drawImage(backgroundImage, left, top, width, height);
-        ctx.restore();
+        ctx.save()
+        ctx.globalAlpha = 0.3
+        ctx.drawImage(backgroundImage, left, top, width, height)
+        ctx.restore()
       }
     }
-  };
+  }
 
   const fetchChartData = useCallback((start, end) => {
     const formattedStart = formatDateApi(start);
@@ -199,7 +199,7 @@ const LiveLocation = () => {
         id="live-location-scatter"
         data={data}
         options={options}
-        plugins={[backgroundImagePlugin, customRectPlugin]}
+        plugins={[backgroundImagePlugin(backgroundImage), customRectPlugin]}
       />
     </div>
   );
