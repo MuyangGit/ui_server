@@ -87,7 +87,9 @@ const formatDateApi = (date) => {
 const LiveLocation = () => {
   const [chartData, setChartData] = useState([]);
   const [bgImage, setBGImage] = useState("2024-05-17-00-06-13-255868.jpg");
-  const [backgroundImage, setBackgroundImage] = useState(new Image());
+
+  const backgroundImage = new Image();
+  backgroundImage.src = `/assets/${bgImage}`;
 
   const backgroundImagePlugin = {
     id: 'backgroundImagePlugin',
@@ -119,6 +121,19 @@ const LiveLocation = () => {
       });
   }, []);
 
+  useEffect(() => {
+    const fetchData = () => {
+      const endDate = new Date();
+      const startDate = new Date(endDate.getTime() - 1 * 60 * 1000);
+      fetchChartData(startDate, endDate);
+      updateBackground()
+    };
+
+    fetchData();
+    const intervalId = setInterval(fetchData, 20000);
+    return () => clearInterval(intervalId);
+  }, [fetchChartData]);
+
   const updateBackground = () => {
     const url = `http://70.175.151.113:10000/v1/ai-cat/chart-data/update-background`;
     console.log(url);
@@ -132,30 +147,12 @@ const LiveLocation = () => {
       })
       .then(data => {
         console.log(data);
-        const newImage = new Image();
-        newImage.src = `/assets/${data["image_name"]}`;
-        newImage.onload = () => {
-          setBackgroundImage(newImage);
-          setBGImage(data["image_name"]);
-        };
+        setBGImage(data["image_name"]);
       })
       .catch(err => {
         console.error('Error fetching data:', err);
       });
   };
-
-  useEffect(() => {
-    const fetchData = () => {
-      const endDate = new Date();
-      const startDate = new Date(endDate.getTime() - 1 * 60 * 1000);
-      fetchChartData(startDate, endDate);
-      updateBackground();
-    };
-
-    fetchData();
-    const intervalId = setInterval(fetchData, 20000);
-    return () => clearInterval(intervalId);
-  }, [fetchChartData]);
 
   const data = {
     datasets: [
