@@ -121,7 +121,7 @@ const LiveLocation = () => {
       });
   }, []);
 
-  const updateBackground = () => {
+  const updateBackground = useCallback() => {
     const url = `http://70.175.151.113:10000/v1/ai-cat/chart-data/update-background`;
     console.log(url);
 
