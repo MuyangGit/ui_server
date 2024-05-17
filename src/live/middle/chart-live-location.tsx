@@ -146,7 +146,7 @@ const LiveLocation = () => {
         return response.json();
       })
       .then(data => {
-        console.log(data);
+        console.log("updated new image:", data);
         setBGImage(data["image_name"]);
       })
       .catch(err => {
