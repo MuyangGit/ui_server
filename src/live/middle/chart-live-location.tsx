@@ -95,7 +95,6 @@ const LiveLocation = () => {
     id: 'backgroundImagePlugin',
     afterDraw: (chart) => {
       if (backgroundImage.complete) {
-          console.log(test)
         const { ctx, chartArea: { left, top, width, height } } = chart;
         ctx.save();
         ctx.globalAlpha = 0.3;
