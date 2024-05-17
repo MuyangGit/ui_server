@@ -130,7 +130,7 @@ const LiveLocation = () => {
     };
 
     fetchData();
-    const intervalId = setInterval(fetchData, 20000);
+    const intervalId = setInterval(fetchData, 2000);
     return () => clearInterval(intervalId);
   }, [fetchChartData]);
 
