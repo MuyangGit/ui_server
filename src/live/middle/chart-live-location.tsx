@@ -127,7 +127,6 @@ const LiveLocation = () => {
       const endDate = new Date();
       const startDate = new Date(endDate.getTime() - 1 * 60 * 1000);
       fetchChartData(startDate, endDate);
-      updateBackground()
     };
 
     fetchData();
