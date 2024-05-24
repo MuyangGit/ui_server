@@ -7,18 +7,28 @@ const formatDate = (date:any) => {
            `T${pad(date.getHours())}:${pad(date.getMinutes())}:${pad(date.getSeconds())}`;
 };
 
+const formatDateApi = (date:any) => {
+    const pad = (num) => (num < 10 ? '0' + num.toString() : num.toString());
+    return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}-${pad(date.getHours())}-${pad(date.getMinutes())}-${pad(date.getSeconds())}`;
+  };
+
 const formatToday = (date:any) => {
     const pad = (num:any) => (num < 10 ? '0' + num : num.toString());
     return [`${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}` + `T00:00:00`, 
             `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate()+1)}` + `T00:00:00`]
 };
 
+const formatTodayApi = (date:any) => {
+    const pad = (num) => (num < 10 ? '0' + num.toString() : num.toString());
+    return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}-00-00-00`;
+  };
 
 const bar_location = 2
 const startNow = new Date();
 const endNow = new Date(startNow.getTime() + 2 * 60 * 1000);
 
 const today = formatToday(startNow)
+const todayApi = formatTodayApi(startNow)
 
 const nowTime = [formatDate(startNow), formatDate(endNow)]
 
@@ -74,8 +84,8 @@ const options:any = {
     }, []);
   
       useEffect(() => {
-        fetchChartData(today, cat_id);
-    }, [today, cat_id]);
+        fetchChartData(todayApi, cat_id);
+    }, [todayApi, cat_id]);
 
     const data:any = {
         datasets: [
