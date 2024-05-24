@@ -7,10 +7,6 @@ const formatDate = (date:any) => {
            `T${pad(date.getHours())}:${pad(date.getMinutes())}:${pad(date.getSeconds())}`;
 };
 
-const formatDateApi = (date:any) => {
-    const pad = (num) => (num < 10 ? '0' + num.toString() : num.toString());
-    return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}-${pad(date.getHours())}-${pad(date.getMinutes())}-${pad(date.getSeconds())}`;
-  };
 
 const formatToday = (date:any) => {
     const pad = (num:any) => (num < 10 ? '0' + num : num.toString());
@@ -19,7 +15,7 @@ const formatToday = (date:any) => {
 };
 
 const formatTodayApi = (date:any) => {
-    const pad = (num) => (num < 10 ? '0' + num.toString() : num.toString());
+    const pad = (num:any) => (num < 10 ? '0' + num.toString() : num.toString());
     return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}-00-00-00`;
   };
 
